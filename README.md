@@ -1,6 +1,6 @@
 # openapi-mock-darksol
 
-![DARKSOL](./assets/darksol-logo.svg)
+![DARKSOL](./assets/darksol-logo.png)
 Built by DARKSOL 🌑
 
 Deterministic mock REST APIs from OpenAPI 3 specs, with strict validation and controllable failure simulation.
@@ -89,3 +89,4 @@ No benchmark claims are published in this repo. Throughput/latency depends on sp
 - Changelog: `CHANGELOG.md`
 - Architecture notes: `docs/ARCHITECTURE.md`
 - GitHub: <https://github.com/darks0l/openapi-mock>
+
