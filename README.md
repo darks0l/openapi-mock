@@ -85,6 +85,26 @@ Given the same seed + operation + request fingerprint, generated data is stable.
 
 Includes deterministic UUID generation for `format: uuid`.
 
+## MVP limitations
+
+Current MVP is intentionally narrow:
+
+- Focused on OpenAPI 3.x request/response mocking only
+- No auth simulation profiles (OAuth/JWT flows are not emulated)
+- No proxy/pass-through mode yet
+- No advanced stateful scenario engine yet (response scripting is static per request fingerprint)
+- Request body validation currently targets `application/json`
+
+## Roadmap
+
+Planned next upgrades:
+
+- auth simulation presets (unauthorized/expired-token scopes)
+- stateful scenarios (create/update/delete mutation memory)
+- proxy hybrid mode (fallback to real upstream for unmapped routes)
+- richer media-type support and multipart validation
+- optional OpenAPI examples coverage report
+
 ## Project docs
 
 - Architecture: `docs/ARCHITECTURE.md`
