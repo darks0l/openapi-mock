@@ -1,4 +1,8 @@
 # openapi-mock-darksol
+
+![DARKSOL](./assets/darksol-logo.svg)
+Built by DARKSOL 🌑
+
 Deterministic mock REST APIs from OpenAPI 3 specs, with strict validation and controllable failure simulation.
 
 ![npm](https://img.shields.io/npm/v/openapi-mock-darksol)
