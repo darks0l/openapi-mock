@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+- docs: retrofit README to SHIP_STANDARD structure (hero/problem/features/quickstart/examples/config/architecture/limits)
+- docs: clarified security notes and removed any implied performance claims
+
 ## 0.2.1
 - Publish package as unscoped `openapi-mock-darksol` for broad installability
 
