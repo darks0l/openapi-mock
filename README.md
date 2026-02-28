@@ -1,6 +1,14 @@
 # openapi-mock-darksol
 
-Generate a local mock API server from an OpenAPI 3 spec.
+Mock REST APIs directly from OpenAPI 3 specs.
+
+- npm: `openapi-mock-darksol`
+- CLI binary: `openapi-mock`
+- GitHub: <https://github.com/darks0l/openapi-mock>
+
+## Why this exists
+
+When frontend/backend teams need progress before real APIs are ready, this gives a deterministic mock server from spec-first contracts. It supports strict validation, response examples, schema fallback generation, and controlled failure simulation.
 
 ## Install
 
@@ -8,17 +16,16 @@ Generate a local mock API server from an OpenAPI 3 spec.
 npm i -D openapi-mock-darksol
 ```
 
-Or run directly:
+or run directly:
 
 ```bash
 npx openapi-mock-darksol mock:start --spec ./openapi.yaml
 ```
 
-## Quickstart
+## Quick start
 
 ```bash
-npm install
-npm run mock:start -- --spec ./examples/petstore.yaml --port 4010 --strict --cors --verbose
+openapi-mock mock:start --spec ./examples/petstore.yaml --port 4010 --strict --verbose
 ```
 
 ## CLI
@@ -37,23 +44,33 @@ openapi-mock mock:start \
   [--error-rate 0.0] \
   [--error-status 500]
 
-openapi-mock mock:build \
-  --spec <path-or-url> \
-  [--out ./.mock-snapshot] \
-  [--seed 42] \
-  [--examples first|random]
-
-openapi-mock mock:check \
-  --spec <path-or-url>
+openapi-mock mock:check --spec <path-or-url>
+openapi-mock mock:build --spec <path-or-url> [--out ./.mock-snapshot]
 ```
+
+## Response strategy
+
+For each operation, the server returns response content in this order:
+
+1. `example`
+2. `examples`
+3. schema-generated payload
+4. fallback object
+
+Success response selection priority:
+
+1. `200`
+2. `201`
+3. first `2xx`
+4. first response entry
 
 ## Error simulation
 
-- Header `x-mock-error: <status>` forces an error status for that request.
-- `--error-rate` injects probabilistic errors globally.
-- `--config` enables per-operation overrides.
+- `x-mock-error: 503` header forces an error for that request
+- `--error-rate` injects random failures globally
+- `--config` supports per-operation overrides
 
-Example `mock.config.yaml`:
+Example config:
 
 ```yaml
 operations:
@@ -62,23 +79,22 @@ operations:
     errorStatus: 503
 ```
 
-Error payload:
+## Deterministic generation
 
-```json
-{
-  "error": {
-    "code": "MOCK_ERROR",
-    "message": "Simulated error",
-    "status": 500
-  }
-}
+Given the same seed + operation + request fingerprint, generated data is stable.
+
+Includes deterministic UUID generation for `format: uuid`.
+
+## Project docs
+
+- Architecture: `docs/ARCHITECTURE.md`
+- Release flow: `docs/RELEASE.md`
+- Changelog: `CHANGELOG.md`
+
+## Local development
+
+```bash
+npm ci
+npm test
+npm run mock:check -- --spec ./examples/petstore.yaml
 ```
-
-## Notes
-
-- Prefers response examples first (`example`/`examples`).
-- Falls back to schema-derived payload generation.
-- `--strict` validates query/path/header and JSON body.
-- Chooses success responses in this order: `200`, `201`, first `2xx`.
-- UUID schema format uses deterministic seeded UUID generation.
-- `--watch` reloads local spec/config updates without restarting.
