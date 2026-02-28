@@ -1,0 +1,7 @@
+operations:
+  getPet:
+    errorRate: 0.2
+    errorStatus: 503
+  listPets:
+    errorRate: 0.05
+    errorStatus: 500

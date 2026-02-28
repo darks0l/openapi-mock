@@ -1,0 +1,61 @@
+openapi: 3.0.3
+info:
+  title: Pet API
+  version: 1.0.0
+servers:
+  - url: http://localhost:4010
+paths:
+  /pets:
+    get:
+      operationId: listPets
+      responses:
+        '200':
+          description: List pets
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Pet'
+              examples:
+                one:
+                  value:
+                    - id: "p_1"
+                      name: "Nova"
+                      age: 3
+                two:
+                  value:
+                    - id: "p_2"
+                      name: "Kilo"
+                      age: 5
+  /pets/{id}:
+    get:
+      operationId: getPet
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Pet
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pet'
+components:
+  schemas:
+    Pet:
+      type: object
+      required: [id, name]
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        age:
+          type: integer
+          minimum: 1
+          maximum: 20

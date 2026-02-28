@@ -1,0 +1,48 @@
+{
+  "name": "@darksol/openapi-mock",
+  "version": "0.2.0",
+  "description": "Generate and serve mock APIs directly from OpenAPI specs",
+  "main": "src/index.js",
+  "bin": {
+    "openapi-mock": "src/index.js"
+  },
+  "files": [
+    "src",
+    "examples",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "mock:start": "node src/index.js mock:start",
+    "mock:build": "node src/index.js mock:build",
+    "mock:check": "node src/index.js mock:check",
+    "test": "node --test",
+    "prepublishOnly": "npm run test && npm run mock:check -- --spec ./examples/petstore.yaml"
+  },
+  "keywords": [
+    "openapi",
+    "mock",
+    "api",
+    "cli"
+  ],
+  "author": "Darksol",
+  "license": "MIT",
+  "type": "commonjs",
+  "homepage": "https://github.com/darks0l/openapi-mock#readme",
+  "bugs": {
+    "url": "https://github.com/darks0l/openapi-mock/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/darks0l/openapi-mock.git"
+  },
+  "dependencies": {
+    "@apidevtools/swagger-parser": "^12.1.0",
+    "ajv": "^8.18.0",
+    "commander": "^14.0.3",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "yaml": "^2.8.2"
+  }
+}
