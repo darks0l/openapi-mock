@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.2.1
+- Publish package as unscoped `openapi-mock-darksol` for broad installability
+
 ## 0.2.0
 - Rename package to `@darksol/openapi-mock` with `openapi-mock` CLI binary
 - Add `--watch` hot-reload mode for local spec/config changes

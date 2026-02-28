@@ -1,17 +1,17 @@
-# @darksol/openapi-mock
+# openapi-mock-darksol
 
 Generate a local mock API server from an OpenAPI 3 spec.
 
 ## Install
 
 ```bash
-npm i -D @darksol/openapi-mock
+npm i -D openapi-mock-darksol
 ```
 
 Or run directly:
 
 ```bash
-npx @darksol/openapi-mock mock:start --spec ./openapi.yaml
+npx openapi-mock-darksol mock:start --spec ./openapi.yaml
 ```
 
 ## Quickstart
